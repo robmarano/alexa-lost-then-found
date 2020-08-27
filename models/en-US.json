@@ -1,0 +1,188 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "lost then found",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "FindIntent",
+                    "slots": [
+                        {
+                            "name": "lost_thing",
+                            "type": "LIST_OF_THINGS"
+                        }
+                    ],
+                    "samples": [
+                        "find {lost_thing}",
+                        "find"
+                    ]
+                },
+                {
+                    "name": "RegisterIntent",
+                    "slots": [
+                        {
+                            "name": "thing",
+                            "type": "LIST_OF_THINGS"
+                        },
+                        {
+                            "name": "location",
+                            "type": "LIST_OF_LOCATIONS"
+                        }
+                    ],
+                    "samples": [
+                        "register {thing} {location}",
+                        "register"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "LIST_OF_THINGS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "nintendo switch",
+                                "synonyms": [
+                                    "switch"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pencil",
+                                "synonyms": [
+                                    "pens",
+                                    "pen",
+                                    "pencils"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "earrings",
+                                "synonyms": [
+                                    "earring"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ring",
+                                "synonyms": [
+                                    "rings"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "remote control",
+                                "synonyms": [
+                                    "remote"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "credit card"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "wallet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "watch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "money",
+                                "synonyms": [
+                                    "coins"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "book",
+                                "synonyms": [
+                                    "journal",
+                                    "books"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "phone",
+                                "synonyms": [
+                                    "iPhone",
+                                    "smartphone",
+                                    "telephone"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "keys",
+                                "synonyms": [
+                                    "key"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "LIST_OF_LOCATIONS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "in the linen closet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "on your keychain"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "on the key hook"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "in the drawer",
+                                "synonyms": [
+                                    "in the kitchen drawer",
+                                    "in the bedroom drawer"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "under the sofa"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

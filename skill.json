@@ -1,36 +1,43 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "lost then found",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.YesIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NoIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StartOverIntent",
-                    "samples": []
-                }
-            ],
-            "types": [
-            ]
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "A service to help you find lost things that you register/catalog using APL and APL for Audio",
+          "examplePhrases": [
+            "Alexa open Lost Then Found."
+          ],
+          "name": "Lost Then Found",
+          "description": "A service to help you find lost things that you register/catalog using APL and APL for Audio"
         }
-    }
+      },
+      "distributionCountries": [
+        "US"
+      ],
+      "isAvailableWorldwide": false,
+      "testingInstructions": "Say 'Alexa, open Lost Then Found.'",
+      "category": "HOME"
+    },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        }
+      }
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
 }
-  

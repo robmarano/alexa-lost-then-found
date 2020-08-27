@@ -1,5 +1,20 @@
+//
+// lambda/custom/utils.js
+// in part shared from
+// https://github.com/alexa/skill-sample-nodejs-pet-tales/blob/master/lambda/custom/utils.js
+// and
+// https://github.com/garystafford/alexa-skill-azure-facts/blob/master/lambda/custom/index.js
+//
+// LOST THEN FOUND skill
+//
+
 const Alexa = require('ask-sdk');
 const _ = require('lodash');
+
+// Format names which come over as all lowercase from Alexa
+function capitalizeFirstLetter(name) {
+    return name.charAt(0).toUpperCase() + name.slice(1);
+}
 
 function isRequestType(handlerInput, requestType) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === requestType;
@@ -121,6 +136,7 @@ function disjunction(handlerInput, array) {
 }
 
 module.exports = {
+	capitalizeFirstLetter,
     isRequestType,
     isIntentName,
     isOneOfIntentNames,

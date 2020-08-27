@@ -1,4 +1,11 @@
+//
+// lambda/custom/resources/en.js
+//
+// taken in part from
+// https://github.com/alexa/skill-sample-nodejs-pet-tales/blob/master/lambda/custom/resources/en.js
+//
 // Localized content for en-* locales
+//
 
 const {getHelpAudio, getHelpVoice} = require('./utils');
 

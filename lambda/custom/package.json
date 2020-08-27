@@ -1,0 +1,39 @@
+{
+  "name": "lost-then-found",
+  "version": "1.0.0",
+  "description": "alexa skill for remembering where my things are",
+  "main": "index.js",
+  "author": {
+    "name": "Amazon Alexa Echo Geckos AWS Kids Team",
+    "email": "maranoro@amazon.com",
+    "url": "https://aws.amazon.com/eewoc/kids/lost-then-found"
+  },
+  "repository": "https://github.com/robmarano/alexa-lost-then-found",
+  "keywords": [
+    "AWS",
+    "Lost Then Found",
+    "Lost and Found",
+    "Amazon Web Services",
+    "AWS",
+    "Alexa"
+  ],
+  "license": "Amazon Software License",
+  "scripts": {
+    "pretest": "eslint --ignore-path .gitignore ..",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.637.0",
+    "ask-sdk-core": "^2.6.0",
+    "ask-sdk-model": "^1.18.0",
+    "ask-sdk-s3-persistence-adapter": "2.8.0",
+    "axios": "0.19.2",
+    "i18next": "19.1.0",
+    "lodash": "4.17.19",
+    "moment": "2.24.0",
+    "moment-timezone": "0.5.31"
+  },
+  "devDependencies": {
+    "eslint": "7.1.0"
+  }
+}
