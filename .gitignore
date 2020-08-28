@@ -100,3 +100,5 @@ dist/
 docs/
 report/
 .tmp/
+
+package-lock.json
