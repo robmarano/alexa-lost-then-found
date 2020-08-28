@@ -8,8 +8,50 @@
 // LOST THEN FOUND skill
 //
 
+'use strict';
+
+// Used to interface with Alexa services
 const Alexa = require('ask-sdk');
+// Used to interface to AWS services
+const AWS = require('aws-sdk');
+// Used to calculate the user's time of day
+const moment = require('moment-timezone');
+
 const _ = require('lodash');
+
+// S3 client to access files stored in S3
+const s3SigV4Client = new AWS.S3({
+    signatureVersion: 'v4',
+    region: process.env.S3_PERSISTENCE_REGION
+});
+
+// Get S3 pre-signed URL
+function getS3PreSignedUrl(s3ObjectKey) {
+
+    const bucketName = process.env.S3_PERSISTENCE_BUCKET;
+    const s3PreSignedUrl = s3SigV4Client.getSignedUrl('getObject', {
+        Bucket: bucketName,
+        Key: s3ObjectKey,
+        Expires: 60*1 // the Expires is capped for 1 minute
+    });
+    console.log(`Util.s3PreSignedUrl: ${s3ObjectKey} URL ${s3PreSignedUrl}`);
+    return s3PreSignedUrl;
+}
+
+// Returns the time zone of the user's Alexa device
+async function getTimeZone(handlerInput) {
+    const {serviceClientFactory, requestEnvelope} = handlerInput;
+    const {deviceId} = requestEnvelope.context.System.device;
+    const client = serviceClientFactory.getUpsServiceClient();
+    return await client.getSystemTimeZone(deviceId)
+}
+
+// Returns the current hour based on the user's time zone
+async function getCurrentHour(handlerInput) {
+    const timeZone = await getTimeZone(handlerInput);
+    console.log("User's time zone:", timeZone);
+    return moment.tz(timeZone).hours();
+}
 
 // Format names which come over as all lowercase from Alexa
 function capitalizeFirstLetter(name) {
@@ -76,13 +118,6 @@ function getSlotResolutionIds(handlerInput, slotName) {
     });
 }
 
-async function getTimeZone(handlerInput) {
-    const {serviceClientFactory, requestEnvelope} = handlerInput;
-    const {deviceId} = requestEnvelope.context.System.device;
-    const client = serviceClientFactory.getUpsServiceClient();
-    return await client.getSystemTimeZone(deviceId)
-}
-
 function isAplSupported(handlerInput) {
     const interfaces = Alexa.getSupportedInterfaces(handlerInput.requestEnvelope);
     const aplInterface = interfaces["Alexa.Presentation.APL"];
@@ -135,8 +170,37 @@ function disjunction(handlerInput, array) {
     return array.slice(0, -1).concat(handlerInput.t("DISJUNCTION")).concat(array[array.length - 1]).join(", ");
 }
 
+//
+// Thing class
+//
+class Thing {
+    constructor(name, location) {
+        this._name = name;
+        this._location = location;
+    }
+    
+    get name() {
+        return this._name.toUpperCase();
+    }
+    
+    set name(newName) {
+        this._name = newName;
+    }
+    
+    get location() {
+        return this._location.toUpperCase();
+    }
+    
+    set location(newLocation) {
+        this._location = newLocation;
+    }
+}
+
 module.exports = {
-	capitalizeFirstLetter,
+    getS3PreSignedUrl,
+    getTimeZone,
+    getCurrentHour,
+    capitalizeFirstLetter,
     isRequestType,
     isIntentName,
     isOneOfIntentNames,
@@ -148,9 +212,9 @@ module.exports = {
     getPersonId,
     getSlotResolutionValues,
     getSlotResolutionIds,
-    getTimeZone,
     isAplSupported,
     addAplIfSupported,
     getAplADirective,
-    disjunction
+    disjunction,
+    Thing
 };

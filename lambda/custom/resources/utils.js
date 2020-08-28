@@ -5,6 +5,8 @@
 // https://github.com/alexa/skill-sample-nodejs-pet-tales/blob/master/lambda/custom/resources/utils.js
 //
 
+'use strict';
+
 // Helper functions for generating Lost Then Found sound effects and SSML
 const helpers = {
     LOST: {
